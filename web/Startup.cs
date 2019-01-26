@@ -1,3 +1,4 @@
+using Entrusted.Web.Data;
 using Entrusted.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RabbitMQ.Client;
+using MongoDB.Driver;
 using StackExchange.Redis;
 
 namespace Entrusted.Web
@@ -24,6 +25,14 @@ namespace Entrusted.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<DbConnectionFactory>(new DbConnectionFactory("mongodb://localhost:27017"));
+
+            services.AddTransient<IRepository<Customer>>(provider =>
+            {
+                var factory = provider.GetRequiredService<DbConnectionFactory>();
+                return new CustomersRepository(factory.MongoClient.GetDatabase("EntrustedDb"));
+            });
+
             services.AddSignalR();
 
             services.AddSingleton<IUserIdProvider, DefaultUserIdProvider>();

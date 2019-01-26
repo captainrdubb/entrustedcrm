@@ -4,24 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using RabbitMQ.Client;
-using StackExchange.Redis;
 
 namespace Entrusted.Web.Hubs
 {
     public class AdminHub : Hub
     {
-        public AdminHub()
-        {
-        }
+        private readonly IEventBus eventbus;
 
-        public override Task OnConnectedAsync()
+        public AdminHub(IEventBus eventbus)
         {
-            return Clients.Caller.SendAsync("Fetching", new { area = "Customers" });
-        }
+            this.eventbus = eventbus;
+        }        
     }
 
-    public class Customer
+    public interface IEventBus
     {
+    }
+
+    public class EventBus : IEventBus
+    {
+
     }
 }
