@@ -4,6 +4,10 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.navbar{
+  flex-wrap: nowrap;
+}
+
 html {
   font-size: 14px;
 }
@@ -15,4 +19,41 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.search-container{
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+.search-btn {
+  background-repeat: no-repeat;
+  background-image: url(/assets/iconmonstr-magnifier-4.svg);
+  background-position: center;
+  border:none;   
+  background-size: 65%;
+  outline: none;
+  border-top-left-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  background-color: white;
+  min-width: 24px;
+  flex-grow:1;
+}
+
+.search-btn:hover{
+  cursor: pointer;  
+}
+
+.search-btn > .icon{
+  height: 100%;  
+}
+
+.search-input{
+  flex-grow:150;
+  border:none;
+  outline: none;
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+  padding-left: .1rem;
 }
