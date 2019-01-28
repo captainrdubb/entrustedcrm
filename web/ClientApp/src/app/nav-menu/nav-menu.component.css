@@ -25,6 +25,7 @@ html {
   position: relative;
   display: flex;
   flex-grow: 1;
+  line-height: 1rem;
 }
 
 .search-btn {
@@ -36,7 +37,7 @@ html {
   outline: none;
   border-top-left-radius: .25rem;
   border-bottom-left-radius: .25rem;
-  background-color: white;
+  background-color: rgba(0 , 0, 0, 0.164);
   min-width: 24px;
   flex-grow:1;
 }
@@ -50,10 +51,18 @@ html {
 }
 
 .search-input{
-  flex-grow:150;
+  flex-grow:142;
   border:none;
   outline: none;
   border-top-right-radius: .25rem;
   border-bottom-right-radius: .25rem;
   padding-left: .1rem;
+  background: rgba(0 , 0, 0, 0.164);
+  color:white;
+  font-weight: 600;
+  letter-spacing: .05rem;
+}
+
+.search-input::placeholder{
+  color: lightgrey;
 }

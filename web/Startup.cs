@@ -30,7 +30,7 @@ namespace Entrusted.Web
             services.AddTransient<IRepository<Customer>>(provider =>
             {
                 var factory = provider.GetRequiredService<DbConnectionFactory>();
-                return new CustomersRepository(factory.MongoClient.GetDatabase("EntrustedDb"));
+                return new CustomersRepository(factory.MongoClient.GetDatabase("Entrusted"));
             });
 
             services.AddSignalR();

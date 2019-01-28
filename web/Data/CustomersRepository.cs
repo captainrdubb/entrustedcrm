@@ -17,7 +17,8 @@ namespace Entrusted.Web.Data
 
         public Task<List<Customer>> ReadAll()
         {
-            return collection.Find(Builders<Customer>.Filter.Empty).ToListAsync();
+            var customers = collection.Find(Builders<Customer>.Filter.Empty).ToListAsync();
+            return customers;
         }
     }
 }

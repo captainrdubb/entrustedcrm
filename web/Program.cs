@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Conventions;
 
 namespace Entrusted.Web
 {
@@ -14,6 +16,8 @@ namespace Entrusted.Web
     {
         public static void Main(string[] args)
         {
+            ConventionRegistry.Register("camelCase", new ConventionPack { new CamelCaseElementNameConvention(), new EnumRepresentationConvention(BsonType.String) }, t => true);
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

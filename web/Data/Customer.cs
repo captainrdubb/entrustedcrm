@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Entrusted.Web.Data
 {
+    [BsonIgnoreExtraElements]
     public class Customer
     {
         public Guid Key { get; set; }
@@ -26,8 +29,8 @@ namespace Entrusted.Web.Data
     [JsonConverter(typeof(StringEnumConverter))]
     public enum CustomerStatus
     {
-        [EnumMember(Value = "prospective")] Prospective,
-        [EnumMember(Value = "current")] Current,
+        Prospective,
+        Current,
         [EnumMember(Value = "non-active")] NonActive
     }
 }
