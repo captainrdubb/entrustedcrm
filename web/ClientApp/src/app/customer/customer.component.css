@@ -1,0 +1,35 @@
+.card-header a {
+    color: black;
+}
+
+.card-header a, a > h5 {
+    display: inline-block;
+}
+
+.card-header a:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.788);
+}
+
+.accordion .card:last-of-type{
+    border: 1px solid rgba(0, 0, 0, 0.486);
+}
+
+.customer-action {
+    background: none;
+    border: none;
+    margin: 0 1rem;    
+}
+
+.customer-action:hover {
+    cursor: pointer;
+}
+
+.customer-action:focus {
+    outline: none;    
+}
+
+
+.card-body{
+    background-color: #0087c057;
+}

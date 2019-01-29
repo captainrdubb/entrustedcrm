@@ -8,7 +8,6 @@ export class Customer {
         familyName: string;
         addressOne: string;
         addressTwo: string;
-        city: string;
         state: string;
         zipCode: string;
         email: string;

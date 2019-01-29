@@ -7,12 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CustomersComponent } from './customers/customers.component';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    CustomersComponent
+    CustomersComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
