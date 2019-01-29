@@ -2,8 +2,8 @@ data = {
     customers: [
         {
             "key": "faf45d2e-1c36-4fd3-ab49-bd5548d22937",
-            "status": "prospective",
-            "createdOn": "1/27/2019 8:20:31 PM +00:00",
+            "status": "Prospective",
+            "createdOn": "2019-01-27T20:20:31+00:00",
             "givenName": "John",
             "familyName": "Wick",
             "addressOne": '11715 S 27th St',
@@ -16,10 +16,25 @@ data = {
             "notes": [
                 {
                     "userKey": "9cf080d9-b06c-4fc6-9091-743b061b2067",
-                    "createdOn": "1/27/2019 8:20:31 PM +00:00",
+                    "createdOn": "2019-01-27T20:20:31+00:00",
                     "text": "A reliable asset"
                 }
             ]
+        },
+        {
+            "key": "0d87f022-8aa1-40c8-b128-d812e625d61f",
+            "status": "Current", 
+            "createdOn": "2019-01-28T23:55:00+00:00", 
+            "givenName": "Bryan", 
+            "familyName": "Mills", 
+            "addressOne": "", 
+            "addressTwo": "", 
+            "city": "", 
+            "state": "", 
+            "zipCode": "", 
+            "email": "bryan.mills@dod.gov", 
+            "phone": "", 
+            "notes": []
         }
     ],
     entrustedUsers: [
