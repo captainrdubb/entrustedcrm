@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { NgxMaskModule } from 'ngx-mask';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CustomersComponent } from './customers/customers.component';
@@ -22,7 +24,8 @@ import { CustomerComponent } from './customer/customer.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: CustomersComponent },
-    ])
+    ]),
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
