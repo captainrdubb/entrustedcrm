@@ -11,21 +11,6 @@
     color: rgba(0, 0, 0, 0.788);
 }
 
-.customer-action {
-    background: none;
-    border: none;
-    margin: 0 1rem;    
-}
-
-.customer-action:hover {
-    cursor: pointer;
-}
-
-.customer-action:focus {
-    outline: none;    
-}
-
-
 .card-body{
     background-color: none;
 }

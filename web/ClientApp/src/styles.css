@@ -10,3 +10,17 @@ html{
 body{
   height: 100%;
 }
+
+.user-action {
+  background: none;
+  border: none;
+  margin: 0 1rem;    
+}
+
+.user-action:hover {
+  cursor: pointer;
+}
+
+.user-action:focus {
+  outline: none;    
+}

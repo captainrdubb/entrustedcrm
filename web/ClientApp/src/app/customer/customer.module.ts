@@ -8,6 +8,7 @@ import { CustomerComponent } from './customer-component/customer.component';
 import { CustomersComponent } from './customers-component/customers.component';
 import { CustomerNoteComponent } from './customer-note/customer-note.component';
 import { QuillDirective } from '../directives/quill.directive';
+import { IconDirective } from '../directives/icon.directive';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { QuillDirective } from '../directives/quill.directive';
     CustomersComponent,
     CustomerNoteComponent,
     QuillDirective,
+    IconDirective,
   ]
 })
 export class CustomerModule { }

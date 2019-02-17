@@ -3,9 +3,15 @@
     <div [appQuill]="note.text"></div>
   </div>
   <ng-template #noteSummary>
-    <span>{{note.entrustedUser.givenName}}</span>
-    <span>{{note.entrustedUser.familyName}}</span>
-    <span>{{note.createdOn | date:'medium'}}</span>
-    <span>{{note.text}}</span>
+    <div class="note-summary">
+      <div>
+        <span class="mr-1">{{note.entrustedUser.givenName}}</span>
+        <span>{{note.entrustedUser.familyName}}</span>
+      </div>
+      <div>{{note.createdOn | date:'short'}}</div>
+      <div>{{note.text}}</div>
+      <button [appIcon]="editIcon" class="user-action">
+      </button>
+    </div>
   </ng-template>
 </div>

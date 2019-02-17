@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CustomerNote } from 'src/app/types/customerNote';
 import { CustomerNotesService } from 'src/app/services/customer-notes.service';
+import { IconDirective } from 'src/app/directives/icon.directive';
 
 @Component({
   selector: 'app-customer-note',
@@ -11,6 +12,7 @@ export class CustomerNoteComponent implements OnInit {
 
   @Input() customerKey: string;
 
+  editIcon:string = IconDirective.EDIT_ICON;
   notes: CustomerNote[];
 
   constructor(private customerNotesService: CustomerNotesService) { }
