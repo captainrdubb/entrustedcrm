@@ -12,5 +12,4 @@ export class Customer {
         zipCode: string;
         email: string;
         phone: string;
-        notes: string[];
 }

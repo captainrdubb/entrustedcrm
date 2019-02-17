@@ -1,4 +1,6 @@
 using Entrusted.Web.Data;
+using Entrusted.Web.Data.Models.Read;
+using Entrusted.Web.Data.Repositories.Read;
 using Entrusted.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using StackExchange.Redis;
 
@@ -25,12 +28,20 @@ namespace Entrusted.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
+
             services.AddSingleton<DbConnectionFactory>(new DbConnectionFactory("mongodb://localhost:27017"));
 
-            services.AddTransient<IRepository<Customer>>(provider =>
+            services.AddTransient<IReadRepository<CustomerRead>>(provider =>
             {
                 var factory = provider.GetRequiredService<DbConnectionFactory>();
-                return new CustomersRepository(factory.MongoClient.GetDatabase("Entrusted"));
+                return new CustomersReadRepository(factory.MongoClient.GetDatabase("Entrusted"));
+            });
+
+            services.AddTransient<IReadRepository<NoteRead>>(provider =>
+            {
+                var factory = provider.GetRequiredService<DbConnectionFactory>();
+                return new NotesReadRepository(factory.MongoClient.GetDatabase("Entrusted"));
             });
 
             services.AddSignalR();

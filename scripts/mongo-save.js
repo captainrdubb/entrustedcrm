@@ -16,9 +16,18 @@ const saveEmployees = async function (mongoWrapper) {
     console.log(result.result);
 }
 
+const saveNotes = async function (mongoWrapper) {
+    console.log('saving notes');
+    const db = mongoWrapper.db();
+    const collection = db.collection("CustomerNote");
+    const result = await collection.insertMany(data.notes);
+    console.log(result.result);
+}
+
 async function loadData(mongoWraper) {
     await saveEmployees(mongoWraper);
     await saveCustomers(mongoWraper);
+    await saveNotes(mongoWraper);
 }
 
 module.exports = loadData;

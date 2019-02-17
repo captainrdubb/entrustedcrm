@@ -67,3 +67,15 @@ sparse-bitfield@^3.0.3:
   integrity sha1-/0rm5oZWBWuks+eSqzM004JzyhE=
   dependencies:
     memory-pager "^1.0.2"
+
+uuid-mongodb@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/uuid-mongodb/-/uuid-mongodb-1.1.3.tgz#414ab71c9fa79e5ae14aa736027e2d3c675d31ef"
+  integrity sha512-qzPnc1PXLOlnt72Bl2s0z/0QXlqsLqWJXKgkvmq49ngnANvXgCu23enIS+hb3UhSqL6wTy/nADFSgQwkelAtiA==
+  dependencies:
+    uuid "^3.3.2"
+
+uuid@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
+  integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==

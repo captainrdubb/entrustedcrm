@@ -1,0 +1,11 @@
+<div *ngFor="let note of notes">
+  <div *ngIf="note.editable; else noteSummary">
+    <div [appQuill]="note.text"></div>
+  </div>
+  <ng-template #noteSummary>
+    <span>{{note.entrustedUser.givenName}}</span>
+    <span>{{note.entrustedUser.familyName}}</span>
+    <span>{{note.createdOn | date:'medium'}}</span>
+    <span>{{note.text}}</span>
+  </ng-template>
+</div>

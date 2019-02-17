@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Entrusted.Web.Data
+namespace Entrusted.Web.Data.Models.Write
 {
     [BsonIgnoreExtraElements]
     public class Customer
@@ -14,6 +14,7 @@ namespace Entrusted.Web.Data
         public Guid Key { get; set; }
         public CustomerStatus Status { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
+        public DateTimeOffset UpdatedOn { get; set; }
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
         public string AddressOne { get; set; }
@@ -22,7 +23,7 @@ namespace Entrusted.Web.Data
         public string ZipCode { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public List<Note> Notes { get; set; }
+        public List<NoteWrite> Notes { get; set; }
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
