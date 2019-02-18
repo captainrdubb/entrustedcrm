@@ -7,10 +7,12 @@
     </div>
     <button [appIcon]="editIcon" (click)="onEditClick(note)" class="user-action ml-3"></button>
   </div>
-  <div *ngIf="note.editable; else noteImmutable">
-    <div [appQuill]="note.text"></div>
+  <div class="mt-2">
+    <div *ngIf="note.editable; else noteImmutable">
+      <div [appQuill]="note.text"></div>
+    </div>
+    <ng-template #noteImmutable>
+      <div>{{note.text}}</div>
+    </ng-template>
   </div>
-  <ng-template #noteImmutable>
-    <div>{{note.text}}</div>
-  </ng-template>
 </div>
