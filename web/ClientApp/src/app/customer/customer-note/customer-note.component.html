@@ -1,17 +1,16 @@
 <div *ngFor="let note of notes">
-  <div *ngIf="note.editable; else noteSummary">
+  <div class="note-header">
+    <span>{{note.createdOn | date:'short'}}</span>
+    <div class="note-attribution ml-3">
+      <span class="mr-1">{{note.entrustedUser.givenName}}</span>
+      <span>{{note.entrustedUser.familyName}}</span>
+    </div>
+    <button [appIcon]="editIcon" (click)="onEditClick(note)" class="user-action ml-3"></button>
+  </div>
+  <div *ngIf="note.editable; else noteImmutable">
     <div [appQuill]="note.text"></div>
   </div>
-  <ng-template #noteSummary>
-    <div class="note-summary">
-      <div>
-        <span class="mr-1">{{note.entrustedUser.givenName}}</span>
-        <span>{{note.entrustedUser.familyName}}</span>
-      </div>
-      <div>{{note.createdOn | date:'short'}}</div>
-      <div>{{note.text}}</div>
-      <button [appIcon]="editIcon" class="user-action">
-      </button>
-    </div>
+  <ng-template #noteImmutable>
+    <div>{{note.text}}</div>
   </ng-template>
 </div>

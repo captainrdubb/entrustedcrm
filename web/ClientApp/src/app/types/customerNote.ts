@@ -6,4 +6,5 @@ export class CustomerNote {
     createdOn: Date;
     updatedOn: Date;
     text: string;
+    editable: boolean;
 }

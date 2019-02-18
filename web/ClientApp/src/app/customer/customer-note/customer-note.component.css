@@ -1,5 +1,14 @@
-.note-summary{
+.note-header {
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    font-size: .8rem;
+}
+
+.note-attribution {
+    display: inline-block;
+}
+
+.note{
+    display: flex;
     align-items: center;
 }

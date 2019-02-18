@@ -12,10 +12,14 @@ export class CustomerNoteComponent implements OnInit {
 
   @Input() customerKey: string;
 
-  editIcon:string = IconDirective.EDIT_ICON;
+  editIcon: string = IconDirective.EDIT_ICON;
   notes: CustomerNote[];
 
   constructor(private customerNotesService: CustomerNotesService) { }
+
+  onEditClick(note: CustomerNote) {
+    note.editable = !note.editable;
+  }
 
   ngOnInit() {
     this.customerNotesService.getCustomerNotes(this.customerKey)
