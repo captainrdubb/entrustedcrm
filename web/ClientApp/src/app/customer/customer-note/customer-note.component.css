@@ -5,10 +5,5 @@
 }
 
 .note-attribution {
-    display: inline-block;
-}
-
-.note{
-    display: flex;
-    align-items: center;
+    display: inline-block;    
 }

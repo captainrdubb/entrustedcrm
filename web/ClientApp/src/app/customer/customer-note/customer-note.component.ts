@@ -27,5 +27,4 @@ export class CustomerNoteComponent implements OnInit {
         this.notes = notes;
       });
   }
-
 }

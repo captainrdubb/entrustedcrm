@@ -1,4 +1,4 @@
-<div *ngFor="let note of notes">
+<div *ngFor="let note of notes" class="app-form-section">
   <div class="note-header">
     <span>{{note.createdOn | date:'short'}}</span>
     <div class="note-attribution ml-3">
@@ -12,7 +12,7 @@
       <div [appQuill]="note.text"></div>
     </div>
     <ng-template #noteImmutable>
-      <div>{{note.text}}</div>
+      <div class="app-font-color-attention">{{note.text}}</div>
     </ng-template>
   </div>
 </div>
