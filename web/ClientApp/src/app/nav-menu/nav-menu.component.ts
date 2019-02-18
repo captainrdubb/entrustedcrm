@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomersService } from '../services/customers.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,13 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
+  debounce: number;
 
-  collapse() {
-    this.isExpanded = false;
+  constructor(private customerService: CustomersService) {
+    this.searchCustomers("");
   }
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
+  onKey({ target: { value } }) {
+    clearTimeout(this.debounce);
+    this.debounce = setTimeout(() => {
+      this.searchCustomers(value);
+    }, 800);
+  }
+
+  private searchCustomers(searchTerms: string) {
+    this.customerService.onCustomerSearch(searchTerms);
   }
 }

@@ -21,7 +21,7 @@ namespace Entrusted.Web.Controllers
             this.customersRepository = customersRepository;
         }
 
-        public Task<List<CustomerRead>> Get()
+        public Task<List<CustomerRead>> Get(string q)
         {
             return this.customersRepository.ReadAll();
         }
