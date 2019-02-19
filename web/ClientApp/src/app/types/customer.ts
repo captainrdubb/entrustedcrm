@@ -6,10 +6,7 @@ export class Customer {
         createdOn: Date;
         givenName: string;
         familyName: string;
-        addressOne: string;
-        addressTwo: string;
-        state: string;
-        zipCode: string;
+        address: string;
         email: string;
         phone: string;
 }
