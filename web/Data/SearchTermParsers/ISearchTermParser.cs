@@ -4,6 +4,6 @@ namespace Entrusted.Web
 {
     public interface ISearchTermParser<TEntity>
     {
-        Func<TEntity, bool> Parse(string searchTerm);
+        Func<TEntity, object> Parse(string searchTerm);
     }
 }

@@ -15,11 +15,23 @@ namespace Entrusted.Web.Data.SearchTermParsers
             { "last", nameof(CustomerRead.FamilyName) },
             { "address", nameof(CustomerRead.Address) },
         };
-        
-        public Func<CustomerRead, bool> Parse(string searchTerm)
+
+        public Func<CustomerRead, object> Parse(string searchTerm)
         {
-            var terms = searchTerm.Split(":");
-            return (customer) => true;
+            if (string.IsNullOrWhiteSpace(searchTerm)) throw new ArgumentNullException(nameof(searchTerm));
+
+            var terms = searchTerm.Split(':');
+
+            try
+            {
+                var propertyName = allowedKeys[terms[0]];
+                var propertyInfo = typeof(CustomerRead).GetProperty(propertyName);
+                return (customer) => propertyInfo.GetValue(customer);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new ArgumentException($"Invalid property name found in search terms, {terms[0]}");
+            }
         }
     }
 }

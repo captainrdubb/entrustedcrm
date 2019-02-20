@@ -10,39 +10,37 @@ namespace web.tests
     public class CustomerSearchTermParserTests
     {
         public Guid customerKeyOne = Guid.NewGuid();
-        public Guid customerKeyTwo = Guid.NewGuid();
-        public Guid customerKeyThree = Guid.NewGuid();
 
         [Fact]
-        public void Parse_WhenStringEmpty_ReturnsNonFilteringLambda()
+        public void Parse_WhenStringEmpty_ThrowsArgumentNullException()
         {
             var parser = new CustomerSearchTermParser();
-            var customers = GetCustomers();
 
-            var predicate = parser.Parse(string.Empty);
-
-            Assert.Equal(3, customers.Where(predicate).Count());
+            Assert.Throws<ArgumentNullException>(() => parser.Parse(string.Empty));
         }
 
         [Fact]
-        public void Parse_WhenStringNotEmpty_ReturnsFilteringLambda()
+        public void Parse_WhenStringHasValidPropertyKey_ReturnsLambdaYieldingProperty()
         {
             var parser = new CustomerSearchTermParser();
-            var customers = GetCustomers();
+            var customer = GetCustomer();
 
             var predicate = parser.Parse($"key:{customerKeyOne}");
 
-            Assert.Equal(1, customers.Where(predicate).Count());
+            Assert.Equal(customer.Key, predicate(customer));
         }
 
-        private List<CustomerRead> GetCustomers()
+        [Fact]
+        public void Parse_WhenStringDoesNotHasValidPropertyKey_ThrowsArgumentExeption()
         {
-            return new List<CustomerRead>()
-            {
-                new CustomerRead(){ Key = customerKeyOne },
-                new CustomerRead(){ Key = customerKeyTwo },
-                new CustomerRead(){ Key = customerKeyThree }
-            };
+            var parser = new CustomerSearchTermParser();
+
+            Assert.Throws<ArgumentException>(() => parser.Parse($"invalid:{customerKeyOne}"));
+        }
+
+        private CustomerRead GetCustomer()
+        {
+            return new CustomerRead() { Key = customerKeyOne };
         }
     }
 }
