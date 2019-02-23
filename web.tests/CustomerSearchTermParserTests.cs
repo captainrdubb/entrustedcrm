@@ -5,7 +5,7 @@ using Entrusted.Web.Data.Models.Read;
 using Entrusted.Web.Data.Search;
 using Xunit;
 
-namespace web.tests
+namespace Entrusted.Web.Tests
 {
     public class CustomerSearchTermParserTests
     {
