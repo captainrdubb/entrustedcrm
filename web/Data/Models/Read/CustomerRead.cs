@@ -8,7 +8,7 @@ namespace Entrusted.Web.Data.Models.Read
     [BsonIgnoreExtraElements]
     public class CustomerRead
     {
-        public string CustomerId { get; internal set; }
+        public string CustomerId { get; set; }
         public Guid Key { get; set; }
         public CustomerStatus Status { get; set; }
         public DateTimeOffset CreatedOn { get; set; }

@@ -2,45 +2,83 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entrusted.Web.Data.Models.Read;
-using Entrusted.Web.Data.SearchTermParsers;
+using Entrusted.Web.Data.Search;
 using Xunit;
 
 namespace web.tests
 {
     public class CustomerSearchTermParserTests
     {
-        public Guid customerKeyOne = Guid.NewGuid();
+        private Guid customerKeyOne = Guid.NewGuid();
+        private Guid customerKeyTwo = Guid.NewGuid();
+        private string customerId = "id";
+        private string firstName = "Timmy";
+        private string lastName = "O`Toule";
+        private string address = "2123 Pow Dr. Tempe, AZ 89545-4895";
+
+        private const string CustomerKeyPropertyName = nameof(CustomerRead.Key);
+        private const string CustomerIdPropertyName = nameof(CustomerRead.CustomerId);
+        private const string FirstNamePropertyName = nameof(CustomerRead.GivenName);
+        private const string LastNamePropertyName = nameof(CustomerRead.FamilyName);
+        private const string AddressPropertyName = nameof(CustomerRead.Address);
 
         [Fact]
         public void Parse_WhenStringEmpty_ThrowsArgumentNullException()
         {
-            var parser = new CustomerSearchTermParser();
+            var parser = new CustomerSearchStringParser();
 
             Assert.Throws<ArgumentNullException>(() => parser.Parse(string.Empty));
         }
 
         [Fact]
-        public void Parse_WhenStringHasValidPropertyKey_ReturnsLambdaYieldingProperty()
+        public void Parse_WhenStringHasValidPropertyKey_ReturnsSearchParam()
         {
-            var parser = new CustomerSearchTermParser();
-            var customer = GetCustomer();
+            var parser = new CustomerSearchStringParser();
 
-            var predicate = parser.Parse($"key:{customerKeyOne}");
+            var searchParams = parser.Parse($"key:{customerKeyOne}");
 
-            Assert.Equal(customer.Key, predicate(customer));
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyOne}");
         }
 
         [Fact]
-        public void Parse_WhenStringDoesNotHasValidPropertyKey_ThrowsArgumentExeption()
+        public void Parse_WhenStringHasSameKeyMoreThanOnce_ReturnsEachParamWithCorrectValues()
         {
-            var parser = new CustomerSearchTermParser();
+            var parser = new CustomerSearchStringParser();
 
-            Assert.Throws<ArgumentException>(() => parser.Parse($"invalid:{customerKeyOne}"));
+            var searchParams = parser.Parse($"key:{customerKeyOne}key:{customerKeyTwo}");
+
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyOne}");
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyTwo}");
+        }
+
+        [Fact]
+        public void Parse_WhenStringHasKeys_ReturnsEachParamWithCorrectValues()
+        {
+            var parser = new CustomerSearchStringParser();
+
+            var searchParams = parser.Parse($"key:{customerKeyOne}customerId:{customerId}first:{firstName}last:{lastName}address:{address}");
+
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyOne}");
+            Assert.Contains(searchParams[CustomerIdPropertyName], searchParam => searchParam.Value == customerId);
+            Assert.Contains(searchParams[FirstNamePropertyName], searchParam => searchParam.Value == firstName);
+            Assert.Contains(searchParams[LastNamePropertyName], searchParam => searchParam.Value == lastName);
+            Assert.Contains(searchParams[AddressPropertyName], searchParam => searchParam.Value == address);
+        }
+
+
+        [Fact]
+        public void Parse_WhenStringHasInvalidPropertyKey_ExcludesPropertyKey()
+        {
+            var parser = new CustomerSearchStringParser();
+
+            var searchParam = parser.Parse($"invalid:{customerKeyOne}");
+            
+            Assert.Empty(searchParam);
         }
 
         private CustomerRead GetCustomer()
         {
-            return new CustomerRead() { Key = customerKeyOne };
+            return new CustomerRead() { Key = customerKeyOne, CustomerId = "1" };
         }
     }
 }
