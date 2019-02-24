@@ -28,7 +28,7 @@ namespace Entrusted.Web.Data.Search
 
         public ILookup<string, SearchParam> Parse(string searchString)
         {
-            if (string.IsNullOrWhiteSpace(searchString)) throw new ArgumentNullException(nameof(searchString));
+            if (string.IsNullOrWhiteSpace(searchString)) return null;
 
             var searchParams = new List<SearchParam>();
             var matchIndexes = pattern.Matches(searchString).Select(m => m.Index).ToArray();
@@ -55,7 +55,7 @@ namespace Entrusted.Web.Data.Search
         {
             if (allowedKeys.TryGetValue(key, out var propertyName))
             {
-                return new SearchParam(propertyName, value);
+                return new SearchParam(propertyName, value.Trim());
             }
 
             return null;

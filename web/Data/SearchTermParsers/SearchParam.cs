@@ -9,5 +9,10 @@ namespace Entrusted.Web.Data.Search
         }
         public string Name { get; }
         public string Value { get; }
+
+        public override string ToString()
+        {
+            return $"{{{Name}:{Value}}}";
+        }
     }
 }

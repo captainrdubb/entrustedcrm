@@ -36,12 +36,11 @@ namespace Entrusted.Web.Tests
         public void Build_WhenGroupHasSingleKeyWithSingleSearchParam_BuildsSimpleFilter()
         {
             List<SearchParam> searchParams = new List<SearchParam>() { new SearchParam(nameof(CustomerRead.CustomerId), "id") };
-            ILookup<string, SearchParam> paramGroups = new List<SearchParam>().ToLookup(sp => sp.Name);
+            ILookup<string, SearchParam> paramGroups = searchParams.ToLookup(sp => sp.Name);
 
             FilterDefinition<CustomerRead> filter = EntrustedFilterBuilder.Build<CustomerRead>(paramGroups);
-            string str = JsonConvert.SerializeObject(filter);
 
-            Assert.Equal("{CustomerId:id}", str);
+            Assert.Equal("{CustomerId:id}", filter);
         }
     }
 }

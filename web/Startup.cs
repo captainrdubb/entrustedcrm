@@ -1,6 +1,7 @@
 using Entrusted.Web.Data;
 using Entrusted.Web.Data.Models.Read;
 using Entrusted.Web.Data.Repositories.Read;
+using Entrusted.Web.Data.Search;
 using Entrusted.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,8 @@ namespace Entrusted.Web
                 var factory = provider.GetRequiredService<DbConnectionFactory>();
                 return new NotesReadRepository(factory.MongoClient.GetDatabase("Entrusted"));
             });
+
+            services.AddTransient<ISearchStringParser<CustomerRead>, CustomerSearchStringParser>();
 
             services.AddSignalR();
 

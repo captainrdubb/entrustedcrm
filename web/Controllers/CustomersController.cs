@@ -28,7 +28,7 @@ namespace Entrusted.Web.Controllers
         {
             var searchParams = searchStringParser.Parse(q);
             var filterDefinition = EntrustedFilterBuilder.Build<CustomerRead>(searchParams);
-            return this.customersRepository.ReadAll();
+            return this.customersRepository.Read(filterDefinition);
         }
     }
 }
