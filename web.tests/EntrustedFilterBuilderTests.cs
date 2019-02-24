@@ -31,16 +31,5 @@ namespace Entrusted.Web.Tests
 
             Assert.Equal("{}", str);
         }
-
-        [Fact]
-        public void Build_WhenGroupHasSingleKeyWithSingleSearchParam_BuildsSimpleFilter()
-        {
-            List<SearchParam> searchParams = new List<SearchParam>() { new SearchParam(nameof(CustomerRead.CustomerId), "id") };
-            ILookup<string, SearchParam> paramGroups = searchParams.ToLookup(sp => sp.Name);
-
-            FilterDefinition<CustomerRead> filter = EntrustedFilterBuilder.Build<CustomerRead>(paramGroups);
-
-            Assert.Equal("{CustomerId:id}", filter);
-        }
     }
 }

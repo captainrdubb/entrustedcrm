@@ -9,14 +9,14 @@ namespace Entrusted.Web.Data.Search
 {
     public abstract class SearchStringParser<TEntity> : ISearchStringParser<TEntity>
     {
-        protected abstract Dictionary<string, string> allowedKeys { get; set; }
+        protected abstract Dictionary<string, ParamBuilder> allowedParams { get; set; }
 
         private Regex pattern;
 
         public SearchStringParser()
         {
             var patternBuilder = new StringBuilder("(");
-            foreach (var key in allowedKeys.Keys)
+            foreach (var key in allowedParams.Keys)
             {
                 patternBuilder.Append(key);
                 patternBuilder.Append(":|");
@@ -44,21 +44,21 @@ namespace Entrusted.Web.Data.Search
                 end -= start;
 
                 var paramString = searchString.Substring(start, end).Split(":");
-                var searchParam = TryCreateParam(paramString[0], paramString[1]);
-                if (searchParam != null) searchParams.Add(searchParam);
+                var resultParams = TryCreateParams(paramString[0], paramString[1]);
+                searchParams.AddRange(resultParams);
             }
 
             return searchParams.ToLookup(param => param.Name);
         }
 
-        private SearchParam TryCreateParam(string key, string value)
+        private IEnumerable<SearchParam> TryCreateParams(string key, string value)
         {
-            if (allowedKeys.TryGetValue(key, out var propertyName))
+            if (allowedParams.TryGetValue(key, out var paramBuilder))
             {
-                return new SearchParam(propertyName, value.Trim());
+                return paramBuilder.Build(value);
             }
 
-            return null;
+            return Enumerable.Empty<SearchParam>();
         }
     }
 }

@@ -23,14 +23,6 @@ namespace Entrusted.Web.Tests
         private const string AddressPropertyName = nameof(CustomerRead.Address);
 
         [Fact]
-        public void Parse_WhenStringEmpty_ThrowsArgumentNullException()
-        {
-            var parser = new CustomerSearchStringParser();
-
-            Assert.Throws<ArgumentNullException>(() => parser.Parse(string.Empty));
-        }
-
-        [Fact]
         public void Parse_WhenStringHasValidPropertyKey_ReturnsSearchParam()
         {
             var parser = new CustomerSearchStringParser();
@@ -65,6 +57,40 @@ namespace Entrusted.Web.Tests
             Assert.Contains(searchParams[AddressPropertyName], searchParam => searchParam.Value == address);
         }
 
+        [Fact]
+        public void Parse_WhenStringHasOneKeyWithDelimitedValues_ReturnsParamForEachValue()
+        {
+            var parser = new CustomerSearchStringParser();
+
+            var searchParams = parser.Parse($"key:{customerKeyOne},{customerKeyTwo} {customerId}|{firstName}");
+
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyOne}");
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyTwo}");
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == customerId);
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == firstName);
+        }
+
+        [Fact]
+        public void Parse_WhenStringHasTrailingComma_DoesNotCreateEmptyParam()
+        {
+            var parser = new CustomerSearchStringParser();
+
+            var searchParams = parser.Parse($"key:{customerKeyOne},");
+
+            Assert.Contains(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == $"{customerKeyOne}");
+            Assert.DoesNotContain(searchParams[CustomerKeyPropertyName], searchParam => searchParam.Value == string.Empty);
+        }
+
+        [Fact]
+        public void Parse_WhenStringHasAddress_DoesNotSplitAddressIntoSeperateParams()
+        {
+            var parser = new CustomerSearchStringParser();
+
+            var searchParams = parser.Parse($"address:an address with spaces, commas, and stuff");
+
+            Assert.Single(searchParams[nameof(CustomerRead.Address)]);
+        }
+
 
         [Fact]
         public void Parse_WhenStringHasInvalidPropertyKey_ExcludesPropertyKey()
@@ -72,7 +98,7 @@ namespace Entrusted.Web.Tests
             var parser = new CustomerSearchStringParser();
 
             var searchParam = parser.Parse($"invalid:{customerKeyOne}");
-            
+
             Assert.Empty(searchParam);
         }
 

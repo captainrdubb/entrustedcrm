@@ -22,7 +22,7 @@ namespace Entrusted.Web.Data
                 List<FilterDefinition<TEntity>> definitions = new List<FilterDefinition<TEntity>>();
                 foreach (SearchParam searchParam in group)
                 {
-                    FilterDefinition<TEntity> definition = Builders<TEntity>.Filter.Regex(searchParam.Name, searchParam.Value);
+                    FilterDefinition<TEntity> definition = Builders<TEntity>.Filter.Regex(searchParam.Name, $".*{searchParam.Value.Trim()}.*");
                     definitions.Add(definition);
                 }
                 FilterDefinition<TEntity> orDefinition = Builders<TEntity>.Filter.Or(definitions);

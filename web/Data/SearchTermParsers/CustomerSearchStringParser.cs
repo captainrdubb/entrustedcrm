@@ -9,13 +9,13 @@ namespace Entrusted.Web.Data.Search
 {
     public class CustomerSearchStringParser : SearchStringParser<CustomerRead>
     {
-        protected override Dictionary<string, string> allowedKeys { get; set; } = new Dictionary<string, string>()
+        protected override Dictionary<string, ParamBuilder> allowedParams { get; set; } = new Dictionary<string, ParamBuilder>()
         {
-            { "key", nameof(CustomerRead.Key) },
-            { "customerId", nameof(CustomerRead.CustomerId) },
-            { "first", nameof(CustomerRead.GivenName) },
-            { "last", nameof(CustomerRead.FamilyName) },
-            { "address", nameof(CustomerRead.Address) },
+            { "key", new ParamBuilder(nameof(CustomerRead.Key), new[] { ' ', ',', '|' }) },
+            { "customerId", new ParamBuilder(nameof(CustomerRead.CustomerId), new[] { ' ', ',', '|' }) },
+            { "first", new ParamBuilder(nameof(CustomerRead.GivenName), new[] { ' ', ',', '|' }) },
+            { "last", new ParamBuilder(nameof(CustomerRead.FamilyName), new[] { ' ', ',', '|' }) },
+            { "address", new ParamBuilder(nameof(CustomerRead.Address)) },
         };
     }
 }
