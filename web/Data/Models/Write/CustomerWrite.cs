@@ -28,6 +28,6 @@ namespace Entrusted.Web.Data.Models.Write
     {
         Prospective,
         Current,
-        [EnumMember(Value = "non-active")] NonActive
+        [EnumMember(Value = "Non-Active")] NonActive
     }
 }

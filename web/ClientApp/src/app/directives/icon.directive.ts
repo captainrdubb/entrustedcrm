@@ -11,6 +11,7 @@ export class IconDirective implements OnInit {
   static CANCEL_ICON: string = 'x';
   static DELETE_ICON: string = 'trashcan';
   static EDIT_ICON: string = 'pencil';
+  static PLUS_ICON: string = 'plus';
 
   @Input() appIcon: string;
 

@@ -1,5 +1,5 @@
 export enum CustomerStatus {
-    "prospective",
-    "current",
-    "non-active"
+    Prospective = 'Prospective',
+    Current = 'Current',
+    NonActive = 'Non-active'
 }

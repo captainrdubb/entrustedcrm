@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Customer } from '../../types/customer';
 import { IconDirective } from 'src/app/directives/icon.directive';
+import { CustomerStatus } from 'src/app/types/customerStatus';
 
 @Component({
   selector: 'app-customer',
@@ -17,6 +17,7 @@ export class CustomerComponent implements OnInit {
   acceptIcon:string = IconDirective.ACCEPT_ICON;
   cancelIcon:string = IconDirective.CANCEL_ICON;
   deleteIcon:string = IconDirective.DELETE_ICON;
+  statuses: CustomerStatus[] = [CustomerStatus.Current, CustomerStatus.NonActive, CustomerStatus.Prospective];
   formCustomer: Customer = new Customer();
 
   constructor() { }

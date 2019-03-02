@@ -1,3 +1,14 @@
 .view-header{
     display: flex;
+    align-content: flex-start;
+}
+
+.people-header-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+.customer-header-section {
+    align-self: center;
 }
