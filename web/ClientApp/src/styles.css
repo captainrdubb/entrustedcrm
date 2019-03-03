@@ -3,10 +3,6 @@
   background-color: #8302c5f5;
 }
 
-.app-font-color-attention{
-  color: #735CDD;
-}
-
 html{
   height: 100%;
 }
@@ -33,6 +29,17 @@ body{
   padding: 1rem;
 }
 
+.app-form-section label{
+  color: #735CDD;
+  font-weight: 400;
+}
+
+.app-form-section input, 
+.app-form-section select,
+.app-form-section select option {
+  color: #26C281;
+}
+
 .create-icon-wrapper {
   display: inline-flex;
   background-color: #26C281;
@@ -41,4 +48,23 @@ body{
 
 .create-icon path {
   fill: white;
+}
+
+.edit-icon path{
+  fill: #26C281;
+}
+
+.create-label {
+  color: #26C281;
+  margin: 0 0 0 .25rem;
+  height: 100%;
+}
+
+.create-label:hover{
+    cursor: pointer;
+}
+
+.create-button {
+    display: inline-flex;
+    align-items: center;
 }

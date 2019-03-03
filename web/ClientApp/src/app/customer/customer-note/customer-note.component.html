@@ -1,18 +1,26 @@
-<div *ngFor="let note of notes" class="app-form-section">
-  <div class="note-header">
-    <span>{{note.createdOn | date:'short'}}</span>
-    <div class="note-attribution ml-3">
-      <span class="mr-1">{{note.entrustedUser.givenName}}</span>
-      <span>{{note.entrustedUser.familyName}}</span>
-    </div>
-    <button [appIcon]="editIcon" (click)="onEditClick(note)" class="user-action ml-3"></button>
+<div class="app-form-section">
+  <div id="section-header" class="mb-1">
+    <label>Notes</label>
+    <button class="ml-2 create-button user-action" (click)="onNewCustomerClick()">
+      <span class="create-icon-wrapper" [appIcon]="plusIcon" [iconWidth]="'23px'" [iconHeight]="'23px'"></span>
+    </button>
   </div>
-  <div class="mt-2">
-    <div *ngIf="note.editable; else noteImmutable">
-      <div [appQuill]="note.text"></div>
+  <div *ngFor="let note of notes">
+    <div class="note-header">
+      <span>{{note.createdOn | date:'short'}}</span>
+      <div class="note-attribution ml-3">
+        <span class="mr-1">{{note.entrustedUser.givenName}}</span>
+        <span>{{note.entrustedUser.familyName}}</span>
+      </div>
+      <button [appIcon]="editIcon" (click)="onEditClick(note)" class="user-action ml-3"></button>
     </div>
-    <ng-template #noteImmutable>
-      <div class="app-font-color-attention">{{note.text}}</div>
-    </ng-template>
+    <div class="mt-2">
+      <div *ngIf="note.editable; else noteImmutable">
+        <div [appQuill]="note.text"></div>
+      </div>
+      <ng-template #noteImmutable>
+        <div class="app-font-color-attention">{{note.text}}</div>
+      </ng-template>
+    </div>
   </div>
 </div>

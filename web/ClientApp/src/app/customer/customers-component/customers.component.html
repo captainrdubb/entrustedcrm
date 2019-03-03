@@ -9,16 +9,19 @@
     <h4>People</h4>
   </div>
 </div>
-<div class="accordion" id="customer-accordion">
-  <div id="panel-rail">
-    <div id="customers-control-panel">
-      <button id="create-customer-button" class="user-action">
-        <span class="create-icon-wrapper" [appIcon]="plusIcon" [iconWidth]="'26px'" [iconHeight]="'26px'"></span>
-        <label id="create-customer-label">CUSTOMER</label>
-      </button>
-    </div>
+<div id="panel-rail">
+  <div id="customers-control-panel">
+    <button id="" class="create-button user-action" (click)="onNewCustomerClick()">
+      <span class="create-icon-wrapper" [appIcon]="plusIcon" [iconWidth]="'24px'" [iconHeight]="'24px'"></span>
+      <label class="create-label">CUSTOMER</label>
+    </button>
   </div>
-  <app-customer *ngFor="let customer of customers; let i = index; let isFirst = first" [index]="i" [isFirst]="isFirst"
+</div>
+<div class="accordion" id="customer-accordion">
+  <app-customer [expand]='true' [customer]="createNewCustomerShell()" *ngIf="createCustomer">
+
+  </app-customer>
+  <app-customer *ngFor="let customer of customers; let i = index; let isFirst = first" [index]="i"
     [customer]="customer">
   </app-customer>
 </div>

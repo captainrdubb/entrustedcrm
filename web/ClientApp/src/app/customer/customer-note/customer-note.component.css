@@ -7,3 +7,11 @@
 .note-attribution {
     display: inline-block;    
 }
+
+#section-header{
+    display: flex;
+}
+
+#section-header label{
+    margin:0;
+}

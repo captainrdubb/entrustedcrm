@@ -12,6 +12,7 @@ export class CustomerNoteComponent implements OnInit {
 
   @Input() customerKey: string;
 
+  plusIcon:string = IconDirective.CREATE_ICON;
   editIcon: string = IconDirective.EDIT_ICON;
   notes: CustomerNote[];
 

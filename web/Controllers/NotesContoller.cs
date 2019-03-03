@@ -29,7 +29,7 @@ namespace Entrusted.Web.Controllers
                 var results = this.notesRepository.Read(filter);
                 return results;
             }
-            return this.notesRepository.ReadAll();
+            return Task.FromResult(new List<NoteRead>());
         }
     }
 }

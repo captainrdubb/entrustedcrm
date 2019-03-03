@@ -12,7 +12,7 @@ export class CustomerComponent implements OnInit {
 
   @Input() customer: Customer;
   @Input() index: number;
-  @Input() isFirst: boolean;
+  @Input() expand: boolean;
 
   acceptIcon:string = IconDirective.ACCEPT_ICON;
   cancelIcon:string = IconDirective.CANCEL_ICON;
