@@ -32,3 +32,13 @@ body{
   box-shadow: 1px 1px 1px 1px lightslategrey;
   padding: 1rem;
 }
+
+.create-icon-wrapper {
+  display: inline-flex;
+  background-color: #26C281;
+  border-radius: 24px;
+}
+
+.create-icon path {
+  fill: white;
+}

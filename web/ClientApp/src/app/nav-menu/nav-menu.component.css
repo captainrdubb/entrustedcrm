@@ -49,7 +49,7 @@ html {
   height: 100%;  
 }
 
-.search-input{
+#search-input{
   flex-grow:142;
   border:none;
   outline: none;
@@ -62,6 +62,53 @@ html {
   letter-spacing: .04rem;
 }
 
-.search-input::placeholder{
-  color: lightgrey;
+.search-container.empty::before{
+  pointer-events: none;
+  content: "Example - ";
+  color: #26C281;
+  position: absolute;
+  left: 32px;
+  bottom: 2px;
+  font-size: 16px;
+  transition: .4s ease all;
+}
+
+.search-container::before{
+  left: 0;
+  bottom: -13px;
+  font-size: 10px;
+  content: "Example - ";
+  color: #26C281;
+  position: absolute;
+  transition: .4s ease all;
+}
+
+.search-container.empty::after{
+  pointer-events: none;
+  content: "first:John last:Doe address:21 Jump St";
+  color: gold;
+  position: absolute;
+  left: 106px;
+  bottom: 2px;
+  font-size: 16px;
+  transition: .4s ease all;
+}
+
+.search-container::after{
+  content: "first:John last:Doe address:21 Jump St";
+  color: gold;
+  position: absolute;
+  left: 46px;
+  bottom: -13px;
+  font-size: 10px;
+  transition: .4s ease all;
+}
+
+@media(max-width: 480px){
+  .search-container.empty::after{
+    max-width: 220px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

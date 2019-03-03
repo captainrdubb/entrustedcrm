@@ -8,16 +8,31 @@ import { CustomersService } from '../services/customers.service';
 })
 export class NavMenuComponent {
   debounce: number;
+  isInputEmpty: boolean = true;
+  isInputFocused: boolean = false;
+
+  get inlinePlaceholder() {
+    return this.isInputEmpty && !this.isInputFocused;
+  }
 
   constructor(private customerService: CustomersService) {
     this.searchCustomers("");
   }
 
   onKey({ target: { value } }) {
+    this.isInputEmpty = value.length === 0;
     clearTimeout(this.debounce);
     this.debounce = setTimeout(() => {
       this.searchCustomers(value);
     }, 800);
+  }
+
+  onFocus() {
+    this.isInputFocused = true;
+  }
+
+  onBlur() {
+    this.isInputFocused = false;
   }
 
   private searchCustomers(searchTerms: string) {

@@ -8,19 +8,29 @@
     flex-wrap: nowrap;
 }
 
-.customers-control-panel{
-    width: 3rem;
-    margin-top: -2rem;
-    margin-left: auto;
-    margin-right: auto;
+#panel-rail{
+    position: relative;
+}
+
+#customers-control-panel {
+    align-items: center;
+    display: inline-flex;
+    position: absolute;
+    top: -32px;
+    right:0;
+}
+
+#create-customer-label{
+  color: #26C281;
+  margin: 0 0 0 .25rem;
+  height: 100%;
+}
+
+#create-customer-label:hover{
+    cursor: pointer;
+}
+
+#create-customer-button{
     display: flex;
-    justify-content: center;
-}
-
-.customer-control-panel span {
-    background-color: violet;
-}
-
-.create-icon path{
-    fill: white;
+    align-items: center;
 }

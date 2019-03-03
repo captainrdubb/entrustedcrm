@@ -1,10 +1,12 @@
 <header>
   <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 en-bg-primary'>
     <div class="container">
-      <a class="navbar-brand font-weight-bold" [routerLink]='["/"]'><span class='text-white mr-2'>Entrusted</span><span>CRM</span></a>
-      <div class='search-container'>
+      <a class="navbar-brand font-weight-bold" [routerLink]='["/"]'><span
+          class='text-white mr-2'>Entrusted</span><span>CRM</span></a>
+      <div [ngClass]="{ 'empty': inlinePlaceholder }" class='search-container mb-1 mb-sm-0'>
         <button class="search-btn"></button>
-        <input type="text" (keyup)="onKey($event)" class="search-input" aria-label="customer search" placeholder="Example - first:John last:Doe address:21 Jump St" />
+        <input type="text" (keyup)="onKey($event)" (focus)="onFocus()" (blur)="onBlur()" id="search-input"
+          aria-label="customer search" />
       </div>
     </div>
   </nav>

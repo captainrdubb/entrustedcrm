@@ -23,11 +23,16 @@ export class IconDirective implements OnInit {
 
   @Input() appIcon: string;
   @Input() iconWidth: string = '16px';
+  @Input() iconHeight: string = '16px';
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     const el: HTMLElement = this.elementRef.nativeElement;
-    el.innerHTML = octicons[this.appIcon].toSVG({ 'width': this.iconWidth, class: IconDirective.classMap[this.appIcon] });
+    el.innerHTML = octicons[this.appIcon].toSVG({
+      'width': this.iconWidth,
+      'height': this.iconHeight,
+      'class': IconDirective.classMap[this.appIcon],
+    });
   }
 }
