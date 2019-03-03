@@ -8,12 +8,11 @@
     </span>
     <h4>People</h4>
   </div>
-  <div class="customer-header-section">
-    <span [appIcon]="plusIcon"></span>
-    <a>new customer</a>
-  </div>
 </div>
 <div class="accordion" id="customer-accordion">
+  <div class="customers-control-panel">
+    <span [appIcon]="plusIcon" [iconWidth]="'24px'"></span>
+  </div>
   <app-customer *ngFor="let customer of customers; let i = index; let isFirst = first" [index]="i" [isFirst]="isFirst"
     [customer]="customer">
   </app-customer>

@@ -1,6 +1,5 @@
 .view-header{
     display: flex;
-    align-content: flex-start;
 }
 
 .people-header-section {
@@ -9,6 +8,19 @@
     flex-wrap: nowrap;
 }
 
-.customer-header-section {
-    align-self: center;
+.customers-control-panel{
+    width: 3rem;
+    margin-top: -2rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.customer-control-panel span {
+    background-color: violet;
+}
+
+.create-icon path{
+    fill: white;
 }

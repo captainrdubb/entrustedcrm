@@ -11,7 +11,7 @@ import { IconDirective } from 'src/app/directives/icon.directive';
 export class CustomersComponent implements OnInit {
 
   customers: Customer[];
-  plusIcon: string = IconDirective.PLUS_ICON;
+  plusIcon: string = IconDirective.CREATE_ICON;
 
   constructor(private customerService: CustomersService) { }
 

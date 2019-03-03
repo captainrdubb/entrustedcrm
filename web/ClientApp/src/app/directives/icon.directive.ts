@@ -11,14 +11,23 @@ export class IconDirective implements OnInit {
   static CANCEL_ICON: string = 'x';
   static DELETE_ICON: string = 'trashcan';
   static EDIT_ICON: string = 'pencil';
-  static PLUS_ICON: string = 'plus';
+  static CREATE_ICON: string = 'plus';
+
+  static classMap: { [key: string]: string } = {
+    [IconDirective.ACCEPT_ICON]: 'accept-icon',
+    [IconDirective.CANCEL_ICON]: 'cancel-icon',
+    [IconDirective.DELETE_ICON]: 'delete-icon',
+    [IconDirective.EDIT_ICON]: 'edit-icon',
+    [IconDirective.CREATE_ICON]: 'create-icon',
+  }
 
   @Input() appIcon: string;
+  @Input() iconWidth: string = '16px';
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     const el: HTMLElement = this.elementRef.nativeElement;
-    el.innerHTML = octicons[this.appIcon].toSVG();
+    el.innerHTML = octicons[this.appIcon].toSVG({ 'width': this.iconWidth, class: IconDirective.classMap[this.appIcon] });
   }
 }
