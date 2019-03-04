@@ -4,11 +4,11 @@ import { CustomerNotesService } from 'src/app/services/customer-notes.service';
 import { IconDirective } from 'src/app/directives/icon.directive';
 
 @Component({
-  selector: 'app-customer-note',
-  templateUrl: './customer-note.component.html',
-  styleUrls: ['./customer-note.component.css']
+  selector: 'app-customer-notes',
+  templateUrl: './customer-notes.component.html',
+  styleUrls: ['./customer-notes.component.css']
 })
-export class CustomerNoteComponent implements OnInit {
+export class CustomerNotesComponent implements OnInit {
 
   @Input() customerKey: string;
 

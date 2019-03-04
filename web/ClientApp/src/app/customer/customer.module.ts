@@ -6,7 +6,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 import { CustomerComponent } from './customer-component/customer.component';
 import { CustomersComponent } from './customers-component/customers.component';
-import { CustomerNoteComponent } from './customer-note/customer-note.component';
+import { CustomerNotesComponent } from './customer-notes/customer-notes.component';
 import { QuillDirective } from '../directives/quill.directive';
 import { IconDirective } from '../directives/icon.directive';
 
@@ -22,7 +22,7 @@ import { IconDirective } from '../directives/icon.directive';
   declarations: [
     CustomerComponent,
     CustomersComponent,
-    CustomerNoteComponent,
+    CustomerNotesComponent,
     QuillDirective,
     IconDirective,
   ]
