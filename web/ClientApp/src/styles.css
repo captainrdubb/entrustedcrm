@@ -30,7 +30,6 @@ body{
 }
 
 .app-form-section label{
-  color: #735CDD;
   font-weight: 400;
 }
 
@@ -51,7 +50,7 @@ body{
 }
 
 .edit-icon path{
-  fill: #26C281;
+  fill: #735CDD;
 }
 
 .create-label {
@@ -68,3 +67,4 @@ body{
     display: inline-flex;
     align-items: center;
 }
+
