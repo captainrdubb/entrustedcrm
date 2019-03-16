@@ -1,9 +1,10 @@
+import { EntrustedUser } from './entrustedUser';
+
 export class CustomerNote {
     customerKey: string;
-    userKey: string;
-    userGivenName: string;
-    userFamilyName: string;
+    createdBy: EntrustedUser;
     createdOn: Date;
+    updatedBy: EntrustedUser;
     updatedOn: Date;
     text: string;
     editable: boolean;

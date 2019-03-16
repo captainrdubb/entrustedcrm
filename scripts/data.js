@@ -33,7 +33,7 @@ data = {
     notes: [
         {
             "customerKey": MUUID.from("faf45d2e-1c36-4fd3-ab49-bd5548d22937"),
-            "entrustedUser": {
+            "createdBy": {
                 "key": MUUID.from("9cf080d9-b06c-4fc6-9091-743b061b2067"),
                 "givenName": "John",
                 "familyName": "Rambo",

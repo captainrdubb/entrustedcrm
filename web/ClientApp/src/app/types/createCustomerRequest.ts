@@ -1,4 +1,5 @@
 import { CustomerStatus } from "./customerStatus";
+import { CustomerNote } from "./customerNote";
 
 export interface CreateCustomerRequest {
     givenName: string;
@@ -6,4 +7,5 @@ export interface CreateCustomerRequest {
     fullAddress: string;
     phone: string;
     status: CustomerStatus;
+    notes: CustomerNote[];
 }
