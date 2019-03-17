@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomersService } from '../../services/customers.service';
 import { Customer } from '../../types/customer';
 import { IconDirective } from 'src/app/directives/icon.directive';
+import { CustomerStatus } from 'src/app/types/customerStatus';
 
 @Component({
   selector: 'app-customers',
@@ -21,9 +22,8 @@ export class CustomersComponent implements OnInit {
   }
 
   createNewCustomerShell(): Customer {
-    let customer = new Customer();
-    customer.familyName = 'Customer';
-    customer.givenName = 'New';
+    let customer = new Customer();   
+    customer.status = CustomerStatus.Undefined;
     return customer;
   }
 

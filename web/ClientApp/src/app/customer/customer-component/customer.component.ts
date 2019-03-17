@@ -17,12 +17,12 @@ export class CustomerComponent implements OnInit {
   acceptIcon:string = IconDirective.ACCEPT_ICON;
   cancelIcon:string = IconDirective.CANCEL_ICON;
   deleteIcon:string = IconDirective.DELETE_ICON;
-  statuses: CustomerStatus[] = [CustomerStatus.Current, CustomerStatus.NonActive, CustomerStatus.Prospective];
+  statuses: CustomerStatus[] = [CustomerStatus.Undefined, CustomerStatus.Current, CustomerStatus.NonActive, CustomerStatus.Prospective];
   formCustomer: Customer = new Customer();
 
   constructor() { }
 
   ngOnInit() {
-    Object.assign(this.formCustomer, this.customer);
+    Object.assign(this.formCustomer, this.customer);    
   }
 }

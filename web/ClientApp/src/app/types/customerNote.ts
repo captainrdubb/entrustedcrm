@@ -7,5 +7,4 @@ export class CustomerNote {
     updatedBy: EntrustedUser;
     updatedOn: Date;
     text: string;
-    editable: boolean;
 }

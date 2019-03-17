@@ -23,7 +23,6 @@ export class IconDirective implements OnInit {
 
   @Input() appIcon: string;
   @Input() iconWidth: string = '16px';
-  @Input() iconHeight: string = '16px';
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
@@ -31,7 +30,7 @@ export class IconDirective implements OnInit {
     const el: HTMLElement = this.elementRef.nativeElement;
     el.innerHTML = octicons[this.appIcon].toSVG({
       'width': this.iconWidth,
-      'height': this.iconHeight,
+      'height': this.iconWidth,
       'class': IconDirective.classMap[this.appIcon],
     });
   }
