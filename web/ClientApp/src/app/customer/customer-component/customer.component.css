@@ -1,21 +1,22 @@
 .card-header a {
-    color: black;
+  color: black;
 }
 
-.card-header a, a > h5 {
-    display: inline-block;
+.card-header a,
+a > h5 {
+  display: inline-block;
 }
 
 .card-header a:hover {
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.788);
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.788);
 }
 
-.card-body{
-    background-color: none;
+.card-body {
+  background-color: none;
 }
 
 .form-control {
-    border: none;
-    font-weight: 400;
+  border: none;
+  font-weight: 400;
 }

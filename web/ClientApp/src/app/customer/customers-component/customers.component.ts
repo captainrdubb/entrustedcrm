@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from '../../services/customers.service';
 import { Customer } from '../../types/customer';
+import { CustomerForm } from '../../types/customerForm';
 import { IconDirective } from 'src/app/directives/icon.directive';
 import { CustomerStatus } from 'src/app/types/customerStatus';
 
@@ -10,20 +11,25 @@ import { CustomerStatus } from 'src/app/types/customerStatus';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-
   customers: Customer[];
   createCustomer: boolean = false;
   plusIcon: string = IconDirective.CREATE_ICON;
 
-  constructor(private customerService: CustomersService) { }
+  constructor(private customerService: CustomersService) {}
 
   ngOnInit() {
-    this.customerService.getCustomers((customers) => this.customers = customers);
+    this.customerService.getCustomers(
+      (customers) =>
+        (this.customers = customers.map((c) =>
+          Object.assign(new CustomerForm(), c)
+        ))
+    );
   }
 
-  createNewCustomerShell(): Customer {
-    let customer = new Customer();   
+  createNewCustomerShell(): CustomerForm {
+    let customer = new CustomerForm();
     customer.status = CustomerStatus.Undefined;
+    customer.isNewCustomer = true;
     return customer;
   }
 

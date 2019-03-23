@@ -3,11 +3,12 @@ import { CustomerNote } from 'src/app/types/customerNote';
 import { CustomerNotesService } from 'src/app/services/customer-notes.service';
 import { IconDirective } from 'src/app/directives/icon.directive';
 import { CustomerNoteForm } from 'src/app/types/customerNoteForm';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-customer-notes',
   templateUrl: './customer-notes.component.html',
-  styleUrls: ['./customer-notes.component.css'],
+  styleUrls: ['./customer-notes.component.css']
 })
 export class CustomerNotesComponent implements OnInit {
   @Input() customerKey: string;
@@ -16,6 +17,8 @@ export class CustomerNotesComponent implements OnInit {
   plusIcon: string = IconDirective.CREATE_ICON;
   editIcon: string = IconDirective.EDIT_ICON;
   saveEditIcon: string = IconDirective.ACCEPT_ICON;
+  cancelEditIcon: string = IconDirective.CANCEL_ICON;
+  deleteNoteIcon: string = IconDirective.DELETE_ICON;
   notes: CustomerNoteForm[];
 
   constructor(private customerNotesService: CustomerNotesService) {}
@@ -24,9 +27,22 @@ export class CustomerNotesComponent implements OnInit {
     note.editable = !note.editable;
   }
 
+  onRemoveNoteClick(note: CustomerNoteForm) {
+    const index = this.notes.indexOf(note);
+    if (index !== -1) this.notes.splice(index, 1);
+  }
+
   onSaveEditClick(note: CustomerNoteForm) {
-    if (note === this.newNote) this.newNote = undefined;
     note.editable = !note.editable;
+    if (note === this.newNote) this.newNote = undefined;
+  }
+
+  onCancelEditClick(note: CustomerNoteForm) {
+    note.editable = !note.editable;
+    if (note === this.newNote) {
+      this.newNote = undefined;
+      this.onRemoveNoteClick(note);
+    }
   }
 
   onNewNoteClick() {
@@ -37,7 +53,7 @@ export class CustomerNotesComponent implements OnInit {
     this.newNote.createdBy = {
       key: '9cf080d9-b06c-4fc6-9091-743b061b2066',
       givenName: 'joel',
-      familyName: 'wills',
+      familyName: 'wills'
     };
     this.newNote.editable = true;
     this.notes.push(this.newNote);

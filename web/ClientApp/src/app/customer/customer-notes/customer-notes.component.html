@@ -16,25 +16,41 @@
         <span class="mr-1">{{ note.createdBy.givenName }}</span>
         <span>{{ note.createdBy.familyName }}</span>
       </div>
-      <button
-        *ngIf="note.editable; else noteImmutableIcon"
-        [appIcon]="saveEditIcon"
-        [iconWidth]="'20px'"
-        (click)="onSaveEditClick(note)"
-        class="user-action ml-3"
-      ></button>
-      <ng-template #noteImmutableIcon>
+      <div *ngIf="note.editable; else noteImmutableIcon">
         <button
-          [appIcon]="editIcon"
+          [appIcon]="saveEditIcon"
           [iconWidth]="'20px'"
-          (click)="onEditClick(note)"
+          (click)="onSaveEditClick(note)"
           class="user-action ml-3"
         ></button>
+        <button
+          [appIcon]="cancelEditIcon"
+          [iconWidth]="'20px'"
+          (click)="onCancelEditClick(note)"
+          class="user-action ml-3"
+        ></button>
+      </div>
+
+      <ng-template #noteImmutableIcon>
+        <div class="user-action-tray">
+          <button
+            [appIcon]="editIcon"
+            [iconWidth]="'20px'"
+            (click)="onEditClick(note)"
+            class="user-action ml-3"
+          ></button>
+          <button
+            [appIcon]="deleteNoteIcon"
+            [iconWidth]="'20px'"
+            (click)="onRemoveNoteClick(note)"
+            class="user-action ml-3"
+          ></button>
+        </div>
       </ng-template>
     </div>
     <div class="mt-2">
       <div *ngIf="note.editable; else noteImmutable">
-        <div [appQuill]="note.text" (onChange)="note.onTextChange" ></div>
+        <div [appQuill]="note.text" (onChange)="(note.onTextChange)"></div>
       </div>
       <ng-template #noteImmutable>
         <div class="app-font-color-attention">{{ note.text }}</div>

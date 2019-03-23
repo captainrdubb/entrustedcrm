@@ -1,6 +1,6 @@
 import { EntrustedUser } from './entrustedUser';
 
-export class CustomerNote {
+export class CustomerNote {    
     customerKey: string;
     createdBy: EntrustedUser;
     createdOn: Date;
