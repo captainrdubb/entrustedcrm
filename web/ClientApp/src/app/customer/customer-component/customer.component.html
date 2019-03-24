@@ -1,5 +1,5 @@
 <div class="card">
-  <form #customerForm_{{index}}="ngForm">
+  <form #customerForm="ngForm">
     <div class="card-header">
       <a
         data-toggle="collapse"
@@ -8,7 +8,7 @@
         aria-expanded="false"
       >
         <h5 class="m-0">
-          {{ customerForm.givenName }} {{ customerForm.familyName }}
+          {{ customerFormModel.givenName }} {{ customerFormModel.familyName }}
         </h5>
       </a>
       <div class="user-action-tray float-right">
@@ -16,8 +16,8 @@
           *ngIf="
             givenName.dirty ||
               familyName.dirty ||
-              customerStatus.dirty ||
-              customerAddress.dirty ||
+              status.dirty ||
+              address.dirty ||
               phone.dirty;
             else deleteCustomerButton
           "
@@ -31,6 +31,7 @@
             [appIcon]="cancelIcon"
             [iconWidth]="'20px'"
             class="user-action"
+            (click)="onCancelEditClick(customerForm)"
           ></button>
         </div>
         <ng-template #deleteCustomerButton>
@@ -56,12 +57,12 @@
               <label>First Name</label>
               <input
                 #givenName="ngModel"
-                [(ngModel)]="customerForm.givenName"
+                [(ngModel)]="customerFormModel.givenName"
                 placeholder="New"
                 name="givenName"
                 type="text"
                 class="form-control"
-                value="{{ customerForm.givenName }}"
+                value="{{ customerFormModel.givenName }}"
               />
             </div>
           </div>
@@ -70,12 +71,12 @@
               <label>Last Name</label>
               <input
                 #familyName="ngModel"
-                [(ngModel)]="customerForm.familyName"
+                [(ngModel)]="customerFormModel.familyName"
                 placeholder="Customer"
                 name="familyName"
                 type="text"
                 class="form-control"
-                value="{{ customerForm.familyName }}"
+                value="{{ customerFormModel.familyName }}"
               />
             </div>
           </div>
@@ -84,9 +85,9 @@
               <label>Status</label>
               <select
                 class="form-control"
-                #customerStatus="ngModel"
-                [(ngModel)]="customerForm.status"
-                name="customerStatus"
+                #status="ngModel"
+                [(ngModel)]="customerFormModel.status"
+                name="status"
               >
                 <option *ngFor="let status of statuses" [value]="status">{{
                   status
@@ -103,10 +104,10 @@
                 id="address-one-{{ i }}"
                 type="text"
                 class="form-control"
-                value="{{ customerForm.address }}"
-                [(ngModel)]="customerForm.address"
-                #customerAddress="ngModel"
-                name="customerAddress"
+                value="{{ customerFormModel.address }}"
+                [(ngModel)]="customerFormModel.address"
+                #address="ngModel"
+                name="address"
               />
             </div>
           </div>
@@ -121,16 +122,16 @@
                 matinput
                 type="tel"
                 class="form-control"
-                [(ngModel)]="customerForm.phone"
+                [(ngModel)]="customerFormModel.phone"
                 #phone
               />
             </div>
           </div>
         </div>
-        <div class="form-group row" *ngIf="!customerForm.isNewCustomer">
+        <div class="form-group row" *ngIf="!customerFormModel.isNewCustomer">
           <div class="col-12">
             <app-customer-notes
-              [customerKey]="customerForm.key"
+              [customerKey]="customerFormModel.key"
             ></app-customer-notes>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { IconDirective } from 'src/app/directives/icon.directive';
 import { CustomerStatus } from 'src/app/types/customerStatus';
 import { CustomerForm } from 'src/app/types/customerForm';
 import { Customer } from 'src/app/types/customer';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-customer',
@@ -14,7 +15,7 @@ export class CustomerComponent implements OnInit {
   @Input() index: number;
   @Input() expand: boolean;
 
-  customerForm: CustomerForm;
+  customerFormModel: CustomerForm;
 
   acceptIcon: string = IconDirective.ACCEPT_ICON;
   cancelIcon: string = IconDirective.CANCEL_ICON;
@@ -29,8 +30,8 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.customer)
-      this.customerForm = Object.assign(new CustomerForm(), this.customer);
-    else this.customerForm = this.createNewCustomerShell();
+      this.customerFormModel = Object.assign(new CustomerForm(), this.customer);
+    else this.customerFormModel = this.createNewCustomerShell();
   }
 
   createNewCustomerShell(): CustomerForm {
@@ -38,5 +39,9 @@ export class CustomerComponent implements OnInit {
     form.status = CustomerStatus.Undefined;
     form.isNewCustomer = true;
     return form;
+  }
+
+  onCancelEditClick(customerFrom: NgForm) {
+    customerFrom.resetForm(this.customer);    
   }
 }
