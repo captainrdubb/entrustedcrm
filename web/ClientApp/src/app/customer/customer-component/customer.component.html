@@ -7,24 +7,39 @@
         href="#collapse-{{ index }}"
         aria-expanded="false"
       >
-        <h5 class="m-0">{{ customer.givenName }} {{ customer.familyName }}</h5>
+        <h5 class="m-0">
+          {{ customerForm.givenName }} {{ customerForm.familyName }}
+        </h5>
       </a>
       <div class="user-action-tray float-right">
-        <button
-          [appIcon]="acceptIcon"
-          [iconWidth]="'20px'"
-          class="user-action"
-        ></button>
-        <button
-          [appIcon]="cancelIcon"
-          [iconWidth]="'20px'"
-          class="user-action"
-        ></button>
-        <button
-          [appIcon]="deleteIcon"
-          [iconWidth]="'20px'"
-          class="user-action"
-        ></button>
+        <div
+          *ngIf="
+            givenName.dirty ||
+              familyName.dirty ||
+              customerStatus.dirty ||
+              customerAddress.dirty ||
+              phone.dirty;
+            else deleteCustomerButton
+          "
+        >
+          <button
+            [appIcon]="acceptIcon"
+            [iconWidth]="'20px'"
+            class="user-action"
+          ></button>
+          <button
+            [appIcon]="cancelIcon"
+            [iconWidth]="'20px'"
+            class="user-action"
+          ></button>
+        </div>
+        <ng-template #deleteCustomerButton>
+          <button
+            [appIcon]="deleteIcon"
+            [iconWidth]="'20px'"
+            class="user-action"
+          ></button>
+        </ng-template>
       </div>
     </div>
     <div
@@ -40,12 +55,13 @@
             <div class="app-form-section">
               <label>First Name</label>
               <input
-                [(ngModel)]="customer.givenName"
+                #givenName="ngModel"
+                [(ngModel)]="customerForm.givenName"
                 placeholder="New"
                 name="givenName"
                 type="text"
                 class="form-control"
-                value="{{ customer.givenName }}"
+                value="{{ customerForm.givenName }}"
               />
             </div>
           </div>
@@ -53,12 +69,13 @@
             <div class="app-form-section">
               <label>Last Name</label>
               <input
-                [(ngModel)]="customer.familyName"
+                #familyName="ngModel"
+                [(ngModel)]="customerForm.familyName"
                 placeholder="Customer"
                 name="familyName"
                 type="text"
                 class="form-control"
-                value="{{ customer.familyName }}"
+                value="{{ customerForm.familyName }}"
               />
             </div>
           </div>
@@ -67,7 +84,8 @@
               <label>Status</label>
               <select
                 class="form-control"
-                [(ngModel)]="customer.status"
+                #customerStatus="ngModel"
+                [(ngModel)]="customerForm.status"
                 name="customerStatus"
               >
                 <option *ngFor="let status of statuses" [value]="status">{{
@@ -85,7 +103,10 @@
                 id="address-one-{{ i }}"
                 type="text"
                 class="form-control"
-                value="{{ customer.address }}"
+                value="{{ customerForm.address }}"
+                [(ngModel)]="customerForm.address"
+                #customerAddress="ngModel"
+                name="customerAddress"
               />
             </div>
           </div>
@@ -100,15 +121,16 @@
                 matinput
                 type="tel"
                 class="form-control"
-                [(ngModel)]="customer.phone"
+                [(ngModel)]="customerForm.phone"
+                #phone
               />
             </div>
           </div>
         </div>
-        <div class="form-group row" *ngIf="!customer.isNewCustomer">
+        <div class="form-group row" *ngIf="!customerForm.isNewCustomer">
           <div class="col-12">
             <app-customer-notes
-              [customerKey]="customer.key"
+              [customerKey]="customerForm.key"
             ></app-customer-notes>
           </div>
         </div>

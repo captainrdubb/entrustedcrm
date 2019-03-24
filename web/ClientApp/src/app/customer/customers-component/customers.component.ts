@@ -19,18 +19,8 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.customerService.getCustomers(
-      (customers) =>
-        (this.customers = customers.map((c) =>
-          Object.assign(new CustomerForm(), c)
-        ))
+      (customers) => (this.customers = customers)
     );
-  }
-
-  createNewCustomerShell(): CustomerForm {
-    let customer = new CustomerForm();
-    customer.status = CustomerStatus.Undefined;
-    customer.isNewCustomer = true;
-    return customer;
   }
 
   onNewCustomerClick(): void {
