@@ -7,19 +7,23 @@ import { Customer } from '../types/customer';
   providedIn: 'root'
 })
 export class CustomersService {
-
   private customers: Subject<Customer[]>;
 
   constructor(private http: HttpClient) {
     this.customers = new BehaviorSubject([]);
   }
 
+  createCustomer(customer: Customer): void {
+    this.http.post('https://localhost:5001/api/customers', customer);
+  }
+
   onCustomerSearch(searchTerms: string) {
-    this.http.get<Customer[]>(`https://localhost:5001/api/customers?q=${searchTerms}`)
-      .subscribe(customers => this.customers.next(customers));
+    this.http
+      .get<Customer[]>(`https://localhost:5001/api/customers?q=${searchTerms}`)
+      .subscribe((customers) => this.customers.next(customers));
   }
 
   getCustomers = (callback: (customers) => void): void => {
-    this.customers.subscribe(customers => callback(customers));
-  }
+    this.customers.subscribe((customers) => callback(customers));
+  };
 }

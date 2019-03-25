@@ -4,6 +4,8 @@ import { CustomerStatus } from 'src/app/types/customerStatus';
 import { CustomerForm } from 'src/app/types/customerForm';
 import { Customer } from 'src/app/types/customer';
 import { NgForm } from '@angular/forms';
+import { CustomersService } from 'src/app/services/customers.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-customer',
@@ -28,6 +30,8 @@ export class CustomerComponent implements OnInit {
     CustomerStatus.Prospective
   ];
 
+  constructor(private customerService: CustomersService) {}
+
   ngOnInit(): void {
     if (this.customer)
       this.customerFormModel = Object.assign(new CustomerForm(), this.customer);
@@ -42,6 +46,20 @@ export class CustomerComponent implements OnInit {
   }
 
   onCancelEditClick(customerFrom: NgForm) {
-    customerFrom.resetForm(this.customer);    
+    customerFrom.resetForm(this.customer);
+  }
+
+  onSaveEditClick() {
+    const customer = this.mapFormToCustomer();
+    this.customerService.createCustomer(customer);
+  }
+
+  mapFormToCustomer(): Customer {
+    const customer = new Customer();
+    Object.keys(this.customer).forEach((key) => {
+      let value = this.customerFormModel[key];
+      if (value) this.customer[key] = value;
+    });
+    return customer;
   }
 }

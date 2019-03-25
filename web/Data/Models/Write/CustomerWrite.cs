@@ -9,7 +9,7 @@ using Newtonsoft.Json.Converters;
 namespace Entrusted.Web.Data.Models.Write
 {
     [BsonIgnoreExtraElements]
-    public class Customer
+    public class CustomerWrite
     {
         public Guid Key { get; set; }
         public CustomerStatus Status { get; set; }
@@ -20,14 +20,5 @@ namespace Entrusted.Web.Data.Models.Write
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public List<NoteWrite> Notes { get; set; }
-    }
-
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum CustomerStatus
-    {
-        Prospective,
-        Current,
-        [EnumMember(Value = "Non-Active")] NonActive
     }
 }

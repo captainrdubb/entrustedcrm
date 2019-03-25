@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Entrusted.Web.Data.Models.Write;
 using MongoDB.Driver;
 
 namespace Entrusted.Web.Data.Repositories.Read

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Entrusted.Web.Data;
 using Entrusted.Web.Data.Models;
 using Entrusted.Web.Data.Models.Read;
+using Entrusted.Web.Data.Models.Write;
 using Entrusted.Web.Data.Repositories.Read;
 using Entrusted.Web.Data.Search;
 using Entrusted.Web.Hubs;
@@ -29,6 +30,11 @@ namespace Entrusted.Web.Controllers
             var searchParams = searchStringParser.Parse(q);
             var filterDefinition = EntrustedFilterBuilder.Build<CustomerRead>(searchParams);
             return this.customersRepository.Read(filterDefinition);
+        }
+
+        public Task Post(CustomerWrite customer)
+        {
+            this.customersRepository.Write(customer);
         }
     }
 }
