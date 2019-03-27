@@ -17,7 +17,7 @@ namespace Entrusted.Web.Tests
         {
             ILookup<string, SearchParam> searchParams = new List<SearchParam>().ToLookup(sp => sp.Name);
 
-            FilterDefinition<object> filter = EntrustedFilterBuilder.Build<object>(searchParams);
+            FilterDefinition<object> filter = SearchFilterBuilder.Build<object>(searchParams);
             var str = JsonConvert.SerializeObject(filter);
 
             Assert.Equal("{}", str);
@@ -26,7 +26,7 @@ namespace Entrusted.Web.Tests
         [Fact]
         public void Build_WhenParamsNull_ReturnsEmptyFilter()
         {
-            FilterDefinition<object> filter = EntrustedFilterBuilder.Build<object>(null);
+            FilterDefinition<object> filter = SearchFilterBuilder.Build<object>(null);
             string str = JsonConvert.SerializeObject(filter);
 
             Assert.Equal("{}", str);

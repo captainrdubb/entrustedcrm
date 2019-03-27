@@ -1,6 +1,8 @@
 using Entrusted.Web.Data;
 using Entrusted.Web.Data.Models.Read;
+using Entrusted.Web.Data.Models.Write;
 using Entrusted.Web.Data.Repositories.Read;
+using Entrusted.Web.Data.Repositories.Write;
 using Entrusted.Web.Data.Search;
 using Entrusted.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,12 @@ namespace Entrusted.Web
             MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
 
             services.AddSingleton<DbConnectionFactory>(new DbConnectionFactory("mongodb://localhost:27017"));
+
+            services.AddTransient<IWriteRepository<CustomerWrite>>(provider =>
+            {
+                var factory = provider.GetRequiredService<DbConnectionFactory>();
+                return new CustomerWriteRepository(factory.MongoClient.GetDatabase("Entrusted"));
+            });
 
             services.AddTransient<IReadRepository<CustomerRead>>(provider =>
             {

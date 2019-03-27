@@ -1,12 +1,12 @@
 import { CustomerStatus } from './customerStatus';
 
 export class Customer {
-        key: string;
-        status: CustomerStatus;
-        createdOn: Date;
-        givenName: string;
-        familyName: string;
-        address: string;
-        email: string;
-        phone: string;
+  public key: string;
+  public status: CustomerStatus;
+  public createdOn: Date;
+  public givenName: string;
+  public familyName: string;
+  public address: string;
+  public email: string;
+  public phone: string;
 }

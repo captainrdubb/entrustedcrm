@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace Entrusted.Web.Data
 {
-    public class EntrustedFilterBuilder
+    public class SearchFilterBuilder
     {
         public static FilterDefinition<TEntity> Build<TEntity>(ILookup<string, SearchParam> paramGroups)
         {
