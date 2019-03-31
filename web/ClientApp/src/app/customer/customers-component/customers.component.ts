@@ -8,7 +8,7 @@ import { CustomerStatus } from 'src/app/types/customerStatus';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css']
+  styleUrls: ['./customers.component.css'],
 })
 export class CustomersComponent implements OnInit {
   customers: Customer[];
@@ -19,8 +19,18 @@ export class CustomersComponent implements OnInit {
 
   ngOnInit() {
     this.customerService.getCustomers(
-      (customers) => (this.customers = customers)
+      customers => (this.customers = customers)
     );
+  }
+
+  onCustomerCreated(customer: Customer) {
+    this.createCustomer = false;
+    this.customers.push(customer);
+  }
+
+  onCustomerDeleted(customer: Customer) {
+    const index = this.customers.findIndex(c => c.key === customer.key);
+    if (index !== -1) this.customers.splice(index, 1);
   }
 
   onNewCustomerClick(): void {

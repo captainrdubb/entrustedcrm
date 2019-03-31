@@ -32,11 +32,18 @@
   </div>
 </div>
 <div class="accordion" id="customer-accordion">
-  <app-customer [expand]="true" *ngIf="createCustomer"> </app-customer>
+  <app-customer
+    (customerCreated)="onCustomerCreated($event)"
+    (customerDeleted)="onCustomerDeleted($event)"
+    [expand]="true"
+    *ngIf="createCustomer"
+  >
+  </app-customer>
   <app-customer
     *ngFor="let customer of customers; let i = index; let isFirst = first"
     [index]="i"
     [customer]="customer"
+    (customerDeleted)="onCustomerDeleted($event)"
   >
   </app-customer>
 </div>

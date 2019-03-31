@@ -30,15 +30,31 @@ namespace Entrusted.Web.Controllers
 
         public Task<List<CustomerRead>> Get(string q)
         {
+            if (string.IsNullOrEmpty(q))
+            {
+                var deletedFilter = Builders<CustomerRead>.Filter.Eq(c => c.IsDeleted, false);
+                var existsFilter = Builders<CustomerRead>.Filter.Exists(c => c.IsDeleted, false);
+                var filter = Builders<CustomerRead>.Filter.Or(deletedFilter, existsFilter);
+                return this.customerReadRepo.Read(filter);
+            }
+
             var searchParams = searchStringParser.Parse(q);
             var filterDefinition = SearchFilterBuilder.Build<CustomerRead>(searchParams);
             return this.customerReadRepo.Read(filterDefinition);
+        }
+
+        [HttpDelete]
+        [Route("{key}")]
+        public Task Delete(Guid key)
+        {
+            return this.customerWriteRepo.Delete(key);
         }
 
         [HttpPost]
         public Task Post([FromBody] CustomerWrite customer)
         {
             customer.Key = Guid.NewGuid();
+            customer.CreatedOn = DateTimeOffset.UtcNow;
             return this.customerWriteRepo.Write(customer);
         }
     }

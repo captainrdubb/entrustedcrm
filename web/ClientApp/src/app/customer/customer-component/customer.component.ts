@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IconDirective } from 'src/app/directives/icon.directive';
 import { CustomerStatus } from 'src/app/types/customerStatus';
 import { CustomerForm } from 'src/app/types/customerForm';
@@ -16,6 +16,8 @@ export class CustomerComponent implements OnInit {
   @Input() customer: Customer;
   @Input() index: number;
   @Input() expand: boolean;
+  @Output() customerCreated: EventEmitter<Customer> = new EventEmitter();
+  @Output() customerDeleted: EventEmitter<Customer> = new EventEmitter();
 
   customerFormModel: CustomerForm;
 
@@ -49,8 +51,14 @@ export class CustomerComponent implements OnInit {
     customerForm.resetForm(this.customer);
   }
 
+  onDeleteCustomerClick() {
+    this.customerService.deleteCustomer(this.customer);
+    this.customerDeleted.emit(this.customer);
+  }
+
   onSaveEditClick() {
     const customer = <Customer>Object.assign({}, this.customerFormModel);
     this.customerService.createCustomer(customer);
+    this.customerCreated.emit(customer);
   }
 }

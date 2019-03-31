@@ -1,6 +1,7 @@
 import { EntrustedUser } from './entrustedUser';
 
 export class CustomerNoteForm {
+  key: string;
   customerKey: string;
   createdBy: EntrustedUser;
   createdOn: Date;

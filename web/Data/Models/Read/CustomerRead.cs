@@ -19,5 +19,6 @@ namespace Entrusted.Web.Data.Models.Read
         public string Email { get; set; }
         public string Phone { get; set; }
         public List<NoteRead> Notes { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

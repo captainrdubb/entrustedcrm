@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { Customer } from '../types/customer';
 
 @Injectable({
@@ -15,16 +14,26 @@ export class CustomersService {
   }
 
   createCustomer(customer: Customer): void {
+    this.http.post('https://localhost:5001/api/customers', customer).subscribe({
+      error: err => console.log(err.message || err),
+    });
+  }
+
+  deleteCustomer(customer: Customer): void {
     this.http
-      .post('https://localhost:5001/api/customers', customer)
-      .pipe(catchError(val => of(val)))
-      .subscribe(result => console.log(result.error || result));
+      .delete(`https://localhost:5001/api/customers/${customer.key}`)
+      .subscribe({
+        error: err => console.log(err.message || err),
+      });
   }
 
   onCustomerSearch(searchTerms: string) {
     this.http
       .get<Customer[]>(`https://localhost:5001/api/customers?q=${searchTerms}`)
-      .subscribe(customers => this.customers.next(customers));
+      .subscribe({
+        next: customers => this.customers.next(customers),
+        error: err => console.log(err.message || err),
+      });
   }
 
   getCustomers = (callback: (customers) => void): void => {

@@ -6,7 +6,8 @@ namespace Entrusted.Web.Data.Models.Read
     [BsonIgnoreExtraElements]
     public class NoteRead
     {
-        public Guid CustomerKey { get; internal set; }
+        public Guid Key { get; set; }
+        public Guid CustomerKey { get; set; }
         public EntrustedUserRead CreatedBy { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public EntrustedUserRead UpdatedBy { get; set; }

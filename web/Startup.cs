@@ -41,6 +41,12 @@ namespace Entrusted.Web
                 return new CustomerWriteRepository(factory.MongoClient.GetDatabase("Entrusted"));
             });
 
+            services.AddTransient<IWriteRepository<NoteWrite>>(provider =>
+            {
+                var factory = provider.GetRequiredService<DbConnectionFactory>();
+                return new NotesWriteRepository(factory.MongoClient.GetDatabase("Entrusted"));
+            });
+
             services.AddTransient<IReadRepository<CustomerRead>>(provider =>
             {
                 var factory = provider.GetRequiredService<DbConnectionFactory>();

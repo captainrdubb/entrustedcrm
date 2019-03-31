@@ -17,6 +17,13 @@ namespace Entrusted.Web.Data.Repositories.Write
             this.collection = database.GetCollection<CustomerWrite>("Customer");
         }
 
+        public Task Delete(Guid key)
+        {
+            var filter = Builders<CustomerWrite>.Filter.Eq(c => c.Key, key);
+            var update = Builders<CustomerWrite>.Update.Set(c => c.IsDeleted, true);
+            return this.collection.UpdateOneAsync(filter, update);
+        }
+
         public Task Write(CustomerWrite customer)
         {
             var filter = Builders<CustomerWrite>.Filter.Eq(c => c.Key, customer.Key);

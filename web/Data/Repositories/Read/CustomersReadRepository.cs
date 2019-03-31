@@ -23,7 +23,8 @@ namespace Entrusted.Web.Data.Repositories.Read
 
         public Task<List<CustomerRead>> ReadAll()
         {
-            var customers = collection.Find(Builders<CustomerRead>.Filter.Empty).ToListAsync();
+            var filter = Builders<CustomerRead>.Filter.Eq(c => c.IsDeleted, false);
+            var customers = collection.Find(filter).ToListAsync();
             return customers;
         }
     }

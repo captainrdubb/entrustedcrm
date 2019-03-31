@@ -28,7 +28,7 @@ namespace Entrusted.Web.Data
                 FilterDefinition<TEntity> orDefinition = Builders<TEntity>.Filter.Or(definitions);
                 orDefinitions.Add(orDefinition);
             }
-
+            
             FilterDefinition<TEntity> andDefinition = Builders<TEntity>.Filter.And(orDefinitions);
 
             return andDefinition;
