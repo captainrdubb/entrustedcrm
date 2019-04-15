@@ -54,8 +54,8 @@
     >
       <div class="card-body">
         <div class="form-group row">
-          <div class="col-4">
-            <div class="app-form-section">
+          <div class="col-sm-12 col-md-6">
+            <div class="app-form-section form-inline">
               <label>First Name</label>
               <input
                 #givenName="ngModel"
@@ -67,9 +67,7 @@
                 value="{{ customerFormModel.givenName }}"
               />
             </div>
-          </div>
-          <div class="col-4">
-            <div class="app-form-section">
+            <div class="app-form-section form-inline mt-1">
               <label>Last Name</label>
               <input
                 #familyName="ngModel"
@@ -82,8 +80,8 @@
               />
             </div>
           </div>
-          <div class="col-4">
-            <div class="app-form-section">
+          <div class="col-sm-12 col-md-6">
+            <div class="app-form-section form-inline">
               <label>Status</label>
               <select
                 class="form-control"
@@ -96,25 +94,7 @@
                 }}</option>
               </select>
             </div>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-6">
-            <div class="app-form-section">
-              <label for="address-one-{{ i }}">Full Address</label>
-              <input
-                id="address-one-{{ i }}"
-                type="text"
-                class="form-control"
-                value="{{ customerFormModel.address }}"
-                [(ngModel)]="customerFormModel.address"
-                #address="ngModel"
-                name="address"
-              />
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="app-form-section">
+            <div class="app-form-section form-inline mt-1">
               <label for="phone-{{ i }}">Phone</label>
               <input
                 id="phone-{{ i }}"
@@ -126,6 +106,23 @@
                 class="form-control"
                 [(ngModel)]="customerFormModel.phone"
                 #phone
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group row mt-1">
+          <div class="col">
+            <div class="app-form-section">
+              <label for="address-one-{{ i }}">Full Address</label>
+              <input
+                id="address-one-{{ i }}"
+                type="text"
+                class="form-control"
+                value="{{ customerFormModel.address }}"
+                [(ngModel)]="customerFormModel.address"
+                #address="ngModel"
+                name="address"
+                style="margin:0"
               />
             </div>
           </div>

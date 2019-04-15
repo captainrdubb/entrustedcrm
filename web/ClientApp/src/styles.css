@@ -33,6 +33,12 @@ body {
   padding: 1rem;
 }
 
+.app-form-section input,
+.app-form-section select {
+  margin-left: 1rem;
+  padding-left: .25rem;
+}
+
 .app-form-section label {
   font-weight: 400;
 }
@@ -54,7 +60,7 @@ body {
 }
 
 .cancel-icon path {
-  fill: #FF101F;
+  fill: #ff101f;
 }
 
 .create-icon path {
@@ -62,7 +68,7 @@ body {
 }
 
 .delete-icon path {
-  fill: #FF101F;
+  fill: #ff101f;
 }
 
 .edit-icon path {
